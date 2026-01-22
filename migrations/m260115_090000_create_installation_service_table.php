@@ -55,7 +55,7 @@ class m260115_090000_create_installation_service_table extends Migration
                 'detail_service' => [
                     'recommended_for' => 'Jasa pemasangan saja (material disediakan customer)',
                 ],
-                'status' => $dbDefault['status'],
+                'status' => $dbDefault['statusService'],
                 'detail_info' => [
                     'change_log' => [
                         'created_at' => $UTCTimestamp,
@@ -78,7 +78,7 @@ class m260115_090000_create_installation_service_table extends Migration
                 'detail_service' => [
                     'recommended_for' => 'Pembelian pipa per meter',
                 ],
-                'status' => $dbDefault['status'],
+                'status' => $dbDefault['statusService'],
                 'detail_info' => [
                     'change_log' => [
                         'created_at' => $UTCTimestamp,
@@ -101,7 +101,7 @@ class m260115_090000_create_installation_service_table extends Migration
                 'detail_service' => [
                     'recommended_for' => 'Jasa penarikan pipa untuk instalasi',
                 ],
-                'status' => $dbDefault['status'],
+                'status' => $dbDefault['statusService'],
                 'detail_info' => [
                     'change_log' => [
                         'created_at' => $UTCTimestamp,
@@ -124,7 +124,7 @@ class m260115_090000_create_installation_service_table extends Migration
                 'detail_service' => [
                     'recommended_for' => 'Pembelian kabel AC 3 core',
                 ],
-                'status' => $dbDefault['status'],
+                'status' => $dbDefault['statusService'],
                 'detail_info' => [
                     'change_log' => [
                         'created_at' => $UTCTimestamp,

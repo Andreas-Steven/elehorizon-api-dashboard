@@ -5,11 +5,12 @@ namespace app\models\search;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\helpers\Constants;
+use yii\helpers\ArrayHelper;
 use app\core\CoreModel;
-use app\models\TradeIn;
+use app\helpers\Constants;
+use app\models\UnitCondition;
 
-class TradeInSearch extends TradeIn
+class UnitConditionSearch extends UnitCondition
 {
     public $page;
     public $page_size;
@@ -24,23 +25,18 @@ class TradeInSearch extends TradeIn
 
     public function rules()
     {
-        return array_merge(
+        return ArrayHelper::merge(
             [
                 [['id'], 'integer'],
                 [['name', 'status', 'detail_info', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by'], 'safe'],
             ],
-            CoreModel::getPaginationRules($this),
+            CoreModel::getPaginationRules($this)
         );
     }
 
     public function scenarios()
     {
         return Model::scenarios();
-    }
-
-    public function getErrors($attribute = null)
-    {
-        return CoreModel::getErrors(parent::getErrors());
     }
 
     public function search($params)
@@ -51,7 +47,8 @@ class TradeInSearch extends TradeIn
             return $unavailableParams;
         }
 
-        $query = TradeIn::find()->notDeleted();
+        $query = UnitCondition::find();
+        $query->where(Constants::STATUS_NOT_DELETED);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,11 +58,11 @@ class TradeInSearch extends TradeIn
             return $dataProvider;
         }
 
-        $query->andFilterWhere(CoreModel::setLikeFilter($this->name, 'name'));
-
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
+
+        $query->andFilterWhere(CoreModel::setLikeFilter($this->name, 'name'));
 
         $query->andFilterWhere(['status' => $this->status ? explode(',', $this->status) : $this->status]);
 
