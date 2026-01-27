@@ -41,8 +41,8 @@ class ProductVariantSearch extends ProductVariant
     {
         return ArrayHelper::merge(
             [
-                [['id', 'product_id', 'product_type_id'], 'integer'],
                 [['pk', 'max_watt'], 'number'],
+                [['id', 'product_id', 'product_type_id'], 'integer'],
                 [['variant_code', 'name', 'sku', 'status', 'product_name', 'detail_info', 'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by'], 'safe'],
             ],
             CoreModel::getPaginationRules($this),
